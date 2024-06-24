@@ -12,11 +12,25 @@
 *   3) Use unity assertion TEST_ASSERT_EQUAL_STRING_MESSAGE to verify the two strings are equal.  See
 *       the [unity assertion reference](https://github.com/ThrowTheSwitch/Unity/blob/master/docs/UnityAssertionsReference.md)
 */
-void test_validate_my_username()
-{
-    /**
-     * TODO: Replace the line below with your code here as described above to verify your /conf/username.txt 
-     * config file and my_username() functions are setup properly
-     */
-    TEST_ASSERT_TRUE_MESSAGE(false,"AESD students, please fix me!");
+void test_validate_my_username(){
+	/**
+	* TODO: Replace the line below with your code here as described above to verify your /conf/username.txt 
+	* config file and my_username() functions are setup properly
+	*/
+
+	char my_username_from_autotest_validate_c[64]={};
+	// char* strcpy(char* destination, const char* source);
+	strcpy(my_username_from_autotest_validate_c, my_username());
+
+	char my_username_from_malloc_username_from_conf_file[64]={};
+	strcpy(my_username_from_malloc_username_from_conf_file, malloc_username_from_conf_file());
+
+	// TEST_ASSERT_EQUAL_STRING_MESSAGE(expected, actual, message)
+	// https://github.com/ThrowTheSwitch/Unity
+	// Compare two null-terminate strings. Fail if any character is different or if the lengths are different. 
+	// Output a custom message on failure.
+
+	TEST_ASSERT_EQUAL_STRING_MESSAGE(my_username_from_autotest_validate_c, my_username_from_malloc_username_from_conf_file,"AESD students, please fix me!");
+
+	//TEST_ASSERT_TRUE_MESSAGE(false,"AESD students, please fix me!");
 }
